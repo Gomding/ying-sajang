@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>구매 내용 작성</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background: #f8f8f8;
+        }
+
+        #buy-form > div {
+            margin: 15px 0;
+        }
+
+        #content {
+            width: 100%;
+            height: 167px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div th:replace="layout/header::header"></div>
+<div class="container">
+    <input id="buy_id" type="hidden" th:value="${buyCommand.yiyingId}"/>
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-success">
+            <div class="panel-body">
+                    <div>
+                        <label>상품명</label>
+                        <input type="text" class="form-control" id="name" name="name" th:value="${buyCommand?.yiyingName}" placeholder="상품이름" autofocus/>
+                    </div>
+                    <div>
+                        <label>수량</label>
+                        <input type="text" class="form-control" id="amount" name="amount" th:value="${buyCommand?.yiyingAmount}" placeholder="구매수량"/>
+                    </div>
+                    <div>
+                        <label>가격</label>
+                        <input type="text" class="form-control" id="price" name="price" th:value="${buyCommand?.yiyingPrice}" placeholder="구매가격"/>
+                    </div>
+                    <div>
+                        <label>구매 날짜</label>
+                        <input type="date" class="form-control" id="buydate" name="buydate" th:value="${buyCommand?.yiyingBuydate}"/>
+                    </div>
+                    <div>
+                        <label>구매 상세 내역</label>
+                        <textarea id="content" name="content" placeholder="구매 상세 내용을 적어주세요." th:text="${buyCommand?.yiyingContent}"></textarea>
+                    </div>
+                    <div class="pull-left">
+                        <a href="/yiying/buyList" class="btn btn-default">목록으로</a>
+                    </div>
+                    <div class="pull-right">
+                        <button class="form-control btn btn-primary" id="update">수정 완료</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/footer::footer"></div>
+
+<script>
+    $("#update").click(function() {
+        var jsonData = JSON.stringify({
+            name: $("#name").val(),
+            amount: $("#amount").val(),
+            price: $("#price").val(),
+            buydate: $("#buydate").val(),
+            content: $("#content").text()
+        });
+        $.ajax({
+            url: "http://localhost:8080/yiying/buyMod/" + $("#buy_id").val(),
+            type: "PUT",
+            data: jsonData,
+            contentType: "application/json",
+            dataType: "json",
+            success: function() {
+                alert("수정 성공!");
+                location.href="/yiying/buyDetail?id=" + $("#buy_id").val();
+            },
+            error: function() {
+                alert("수정 실패!");
+            }
+        });
+    });
+</script>
+</body>
+</html>

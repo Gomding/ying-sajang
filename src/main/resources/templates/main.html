@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메인</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <style>
+        .bdgreen {
+            border: 2px solid darkseagreen;
+            border-radius: 20px;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .ml-70 {
+            margin-left: 70px;
+        }
+
+        .mr-70 {
+            margin-right: 70px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .memo {
+            width: 100%;
+            height:160px;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+    <div th:replace="layout/header::header"></div>
+    <div class="container">
+        <div class="bdgreen col-md-4 col-sm-4 text-center pull-left ml-70">
+            <h3 class="">최근 수익 상황</h3><br/>
+            <div class="">
+                <span><h4>최근 한달 수익 : <a th:text="원"></a></h4></span>
+                <span><h4>현재 치약 원가 : <a th:text="${toothPaste?.productCostprice}"></a>원</h4></span>
+                <span><h4>치약 재고 : <a th:text="${toothPaste?.productAmount}"></a>개</h4></span>
+            </div>
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="col-md-1">판매한 물건</th>
+                        <th class="col-md-1">수익</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="sell : ${sellTop}">
+                        <td th:text="${sell.sellName}"></td>
+                        <td th:text="${sell.sellProfit}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-right"><a href="/sell/sellList">더보기</a></p>
+        </div>
+        <div class="bdgreen col-md-4 col-sm-4 pull-right mr-70 mb-20">
+            <h3 class="text-center">잉사장님의 지갑 속 상황</h3>
+            <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.getWalletMoney()} + '원'"></a></h4></span><br/>
+            <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.getWalletModdate()}"></a></h4></span>
+            <span class="text-center"><h4>최근 한달 지출 : <a>10000원</a></h4></span>
+            <br/><br/>
+            <span><h4> 최근 지갑 조회내역 </h4></span>
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="col-md-1">잔액</th>
+                        <th class="col-md-1">잔액 변동</th>
+                        <th class="col-md-1">구매한 상품</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="wallet : ${walletTop5}">
+                        <td th:text="${wallet.getWalletMoney()}"></td>
+                        <td th:text="${wallet.getWalletMod()}"></td>
+                        <td th:text="${wallet.getWalletRecord()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-right"><a>더보기</a></p>
+        </div>
+        <div class="bdgreen col-md-4 col-sm-4 pull-left mt-20 ml-70">
+            <h3 class="text-center">메모장</h3>
+            <br/>
+            <input class="form-control" id="link" name="link" placeholder="구매하고 싶은 상품의 사이트 링크를 적어주세요"><br/>
+            <textarea class="memo" id="content" name="content" placeholder="구매하고싶은 상품의 내용을 적어주세요."></textarea>
+            <div class="pull-left" style="width: 100px; margin:10px 0;">
+                <a href="/memo/memoList" class="btn btn-primary btn-block">메모 목록 보기</a>
+            </div>
+            <div class="pull-right" style="width: 100px; margin:10px 0;">
+                <a class="btn btn-primary btn-block" id="getMemo">메모 저장</a>
+            </div>
+        </div>
+        <div class="bdgreen col-md-4 col-sm-4 pull-right mt-20 mr-70">
+            <h3 class="text-center">최근 구매 목록</h3>
+
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="col-md-1">구매한 물품</th>
+                        <th class="col-md-1">가격</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="buy : ${buyTop}">
+                        <td th:text="${buy.yiyingName}"></td>
+                        <td th:text="${buy.yiyingPrice}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div>
+                <span><h4 class="text-center">최근 1달 지출 : <a>10000원</a></h4> </span>
+
+            </div>
+            <p class="text-right"><a href="/yiying/buyList">더보기</a></p>
+        </div>
+
+    </div>
+    <div th:replace="layout/footer::footer"></div>
+
+<script>
+    $("#getMemo").click(function() {
+        var jsonData = JSON.stringify({
+            content: $("#content").val(),
+            link: $("#link").val()
+        });
+        $.ajax({
+            url: "http://localhost:8080/memo/memoList",
+            type: "POST",
+            data: jsonData,
+            contentType: "application/json",
+            dataType: "json",
+            success: function() {
+                alert("생성 성공!");
+                location.href="/memo/memoList";
+            },
+            error: function() {
+                alert("수정 실패!");
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

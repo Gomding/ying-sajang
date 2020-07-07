@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>잉사장님의 구매 목록</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <style>
+
+        .deleteBtn {
+            padding: 0;
+            width:20px;
+            display: block;
+            margin-left: auto;
+        }
+
+    </style>
+
+</head>
+<body>
+<div th:replace="layout/header::header"></div>
+<div class="container">
+    <div class="page-header">
+        <h1>상품 목록</h1>
+    </div>
+    <div class="pull-right" style="width: 100px; margin:10px 0;">
+        <a href="/product/productForm" class="btn btn-primary btn-block">상품 등록</a>
+    </div>
+    <br/><br/><br/>
+
+    <div id="mainHide">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col-md-1">#</th>
+                <th class="col-md-3">상품 이름</th>
+                <th class="col-md-2">재고 수량</th>
+                <th class="col-md-2">가격</th>
+                <th class="col-md-2">원가</th>
+                <th class="col-md-2">수정 날짜</th>
+                <th class="col-md-1">삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${productList}">
+                <td th:text="${product.productId}"></td>
+                <td><a th:href="'/product/productMod?id='+${product.productId}" th:text="${product.productName}"></a></td>
+                <td th:text="${product.productAmount}"></td>
+                <td th:text="${product.productPrice}"></td>
+                <td th:text="${product.productCostprice}"></td>
+                <td th:text="${product.productModdate}"></td>
+                <td style="padding: 8px 12px;">
+                    <button type="button" class="deleteBtn btn btn-default" aria-label="deleteBtn">
+                        <input class="product_id" th:value="${product.productId}" type="hidden"/>
+                        <span class="fa fa-remove"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation" style="text-align: center;">
+        <ul class="pagination" th:with="startNumber=${T(Math).floor(productList.number/10)}*10+1,
+                                    endNumber=(${productList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${productList.totalPages}">
+            <li><a href="/product/productList?page=1">&laquo;</a></li>
+            <li th:style="${productList.first} ? 'display:none'">
+                <a th:href="@{/product/productList(page=${productList.number})}">&lsaquo;</a>
+            </li>
+            <li th:each="page :${#numbers.sequence(startNumber, endNumber)}"
+                th:class="(${page} == ${productList.number}+1) ? 'active'">
+                <a th:href="@{/product/productList(page=${page})}" th:text="${page}">
+                    <span class="sr-only"></span>
+                </a>
+            </li>
+            <li th:style="${productList.last} ? 'display:none'">
+                <a th:href="@{/product/productList(page=${productList.number}+2)}">&rsaquo;</a>
+            </li>
+            <li>
+                <a th:href="@{/product/productList(page=${productList.totalPages})}">&raquo;</a>
+            </li>
+
+        </ul>
+    </nav>
+
+</div>
+<div th:replace="layout/footer::footer"></div>
+
+<script>
+    $(".deleteBtn").click(function () {
+        if (confirm("삭제하시겠습니까?")) {
+            $.ajax({
+                url: "http://localhost:8080/product/productList/" + $(this).children(".product_id").val(),
+                type: "DELETE",
+                success: function () {
+                    alert("삭제 성공!");
+                    location.href = "/product/productList";
+                },
+                error: function () {
+                    alert($("#product_id").val());
+                    alert("삭제 실패!");
+                }
+            });
+        }
+    });
+
+</script>
+</body>
+</html>

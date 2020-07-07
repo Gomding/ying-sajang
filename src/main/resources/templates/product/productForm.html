@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 등록</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+
+    <style>
+        body {
+            background: #f8f8f8;
+        }
+
+        #product-form > div {
+            margin: 15px 0;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div th:replace="layout/header::header"></div>
+<div class="container">
+    <div class="page-header">
+        <h1>상품 등록</h1>
+    </div>
+    <br/><br/>
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-success">
+            <div class="panel-body">
+                <form id="product-form" method="post" th:action="@{productForm}" th:object="${productCommand}">
+                    <div>
+                        <label>상품 이름</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="상품이름" autofocus/>
+                    </div>
+                    <div>
+                        <label>재고</label>
+                        <input type="text" class="form-control" id="amount" name="amount" placeholder="재고수량"/>
+                    </div>
+                    <div>
+                        <label>가격</label>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="판매가격"/>
+                    </div>
+                    <div>
+                        <label>원가</label>
+                        <input type="text" class="form-control" id="costprice" name="costprice" placeholder="원가"/>
+                    </div>
+                    <br/><br/>
+                    <div class="pull-left">
+                        <a href="/product/productList" class="btn btn-default">목록으로</a>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="form-control btn btn-primary">작성 완료</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/footer::footer"></div>
+</body>
+</html>
