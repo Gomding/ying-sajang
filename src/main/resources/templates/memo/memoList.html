@@ -14,7 +14,6 @@
         }
 
         .memo-container {
-            margin-left: 33%;
             border: 2px solid #f0ad4e;
             border-radius: 20px;
             margin-top:30px
@@ -30,7 +29,8 @@
             <h1>메모 목록</h1>
         </div>
         <div class="memoList-container">
-            <div class="memo-container col-md-6" th:each="memoList : ${memoList}">
+            <div class="memo-container col-md-offset-3 col-md-6" th:each="memoList : ${memoList}">
+                <br/>
                 <h4 th:text="${memoList.memoId} + '번 메모'"></h4><br/>
                 <table class="table table-hover">
                     <tbody>

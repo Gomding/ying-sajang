@@ -61,7 +61,7 @@
             <p class="text-right"><a href="/sell/sellList">더보기</a></p>
         </div>
         <div class="bdgreen col-xs-10 col-md-4 pull-right mg-br">
-            <h3 class="text-center">잉사장님의 지갑 속 상황</h3>
+            <h3 class="text-center">잉사장님의 지갑 속 상황</h3><br/>
             <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.getWalletMoney()} + '원'"></a></h4></span><br/>
             <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.getWalletModdate()}"></a></h4></span>
             <span class="text-center"><h4>최근 한달 지출 : <a>10000원</a></h4></span>
@@ -93,10 +93,10 @@
             <input class="form-control" id="link" name="link" placeholder="구매하고 싶은 상품의 사이트 링크를 적어주세요"><br/>
             <textarea class="memo" id="content" name="content" placeholder="구매하고싶은 상품의 내용을 적어주세요."></textarea>
             <div class="pull-left" style="margin:10px 0;">
-                <a href="/memo/memoList" class="btn btn-primary btn-block">메모 목록 보기</a>
+                <a href="/memo/memoList" class="btn btn-default btn-block">메모 목록 보기</a>
             </div>
             <div class="pull-right" style="width: 100px; margin:10px 0;">
-                <a class="btn btn-primary btn-block" id="getMemo">메모 저장</a>
+                <a class="btn btn-success btn-block" id="getMemo">메모 저장</a>
             </div>
         </div>
         <div class="bdgreen col-xs-10 col-md-4 pull-right mg-br">
