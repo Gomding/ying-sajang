@@ -2,7 +2,6 @@ package com.community.hululuuuu.controller;
 
 import com.community.hululuuuu.product.Product;
 import com.community.hululuuuu.product.ProductService;
-import com.community.hululuuuu.repository.YiyingRepository;
 import com.community.hululuuuu.sell.Sell;
 import com.community.hululuuuu.sell.SellService;
 import com.community.hululuuuu.wallet.Wallet;
