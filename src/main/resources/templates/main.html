@@ -13,20 +13,14 @@
             border-radius: 20px;
         }
 
-        .mt-20 {
-            margin-top: 20px;
+        .mg-bl {
+            margin-left: 8%;
+            margin-bottom: 40px;
         }
 
-        .ml-70 {
-            margin-left: 70px;
-        }
-
-        .mr-70 {
-            margin-right: 70px;
-        }
-
-        .mb-20 {
-            margin-bottom: 20px;
+        .mg-br {
+            margin-right: 8%;
+            margin-bottom: 40px;
         }
 
         .memo {
@@ -41,7 +35,7 @@
     <div th:replace="layout/header::header"></div>
     <div class="container" style="padding-top:100px;">
         <div class="row">
-        <div class="bdgreen col-xs-10 col-md-4 text-center pull-left ml-70">
+        <div class="bdgreen col-xs-12 col-md-4 text-center pull-left mg-bl">
             <h3 class="">최근 수익 상황</h3><br/>
             <div class="">
                 <span><h4>최근 한달 수익 : <a th:text="원"></a></h4></span>
@@ -66,7 +60,7 @@
             </div>
             <p class="text-right"><a href="/sell/sellList">더보기</a></p>
         </div>
-        <div class="bdgreen col-xs-10 col-md-4 pull-right mr-70 mb-20">
+        <div class="bdgreen col-xs-12 col-md-4 pull-right mg-br">
             <h3 class="text-center">잉사장님의 지갑 속 상황</h3>
             <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.getWalletMoney()} + '원'"></a></h4></span><br/>
             <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.getWalletModdate()}"></a></h4></span>
@@ -93,7 +87,7 @@
             </div>
             <p class="text-right"><a>더보기</a></p>
         </div>
-        <div class="bdgreen col-xs-10 col-md-4 pull-left mt-20 ml-70">
+        <div class="bdgreen col-xs-12 col-md-4 pull-left mg-bl">
             <h3 class="text-center">메모장</h3>
             <br/>
             <input class="form-control" id="link" name="link" placeholder="구매하고 싶은 상품의 사이트 링크를 적어주세요"><br/>
@@ -105,7 +99,7 @@
                 <a class="btn btn-primary btn-block" id="getMemo">메모 저장</a>
             </div>
         </div>
-        <div class="bdgreen col-xs-10 col-md-4 pull-right mt-20 mr-70">
+        <div class="bdgreen col-xs-10 col-md-4 pull-right mg-br">
             <h3 class="text-center">최근 구매 목록</h3>
 
             <div>
