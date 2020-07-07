@@ -1,6 +1,6 @@
 spring:
     datasource:
-        url: jdbc:mysql://15.165.154.135:3306/yiying?characterEncoding=UTF-8&serverTimezone=UTC
+        url: jdbc:mysql://localhost:3306/yiying?characterEncoding=UTF-8&serverTimezone=UTC
         username: yiyingroot
         password: 12341234
         driver-class-name: com.mysql.cj.jdbc.Driver
