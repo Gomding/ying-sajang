@@ -1,6 +1,5 @@
 package com.community.hululuuuu.sell;
 
-import com.community.hululuuuu.product.Product;
 import com.community.hululuuuu.repository.SellRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -55,5 +54,9 @@ public class SellService {
 
     public void deleteSell(Long id) {
         sellRepository.deleteById(id);
+    }
+
+    public Sell sellFindById(Long id) {
+        return sellRepository.getOne(id);
     }
 }

@@ -1,6 +1,8 @@
 package com.community.hululuuuu.product;
 
 import com.community.hululuuuu.repository.ProductRepository;
+import com.community.hululuuuu.sell.Sell;
+import com.community.hululuuuu.sell.SellCommand;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -48,6 +50,26 @@ public class ProductService {
 
     public Product selectToothPaste() {
         return productRepository.findByProductName("치약");
+    }
+
+    public void updateProductAmount(SellCommand sellCommand) {
+        Product product = productRepository.findByProductName(sellCommand.getProduct());
+        product.setProductAmount(product.getProductAmount() - sellCommand.getAmount());
+        productRepository.save(product);
+    }
+
+    public void afterDelSellAmount(Sell sell) {
+        Product product = productRepository.findByProductName(sell.getSellProduct());
+        product.setProductAmount(product.getProductAmount() + sell.getSellAmount());
+        productRepository.save(product);
+    }
+
+    public void afterUpdateSellAmount(SellCommand sellCommand, int oldAmount) {
+        Product product = productRepository.findByProductName(sellCommand.getProduct());
+        int sellAmount = sellCommand.getAmount();
+        int diffAmount = oldAmount - sellAmount;
+        product.setProductAmount(product.getProductAmount() + diffAmount);
+        productRepository.save(product);
     }
 
 }

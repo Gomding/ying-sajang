@@ -91,7 +91,7 @@
 
         var mofComm = Math.round(((price + deliverPrice) / 100) * commission);
 
-        return price - (naverComm + mofComm);
+        return price - (naverComm + mofComm) - deliverPrice;
 
     }
 

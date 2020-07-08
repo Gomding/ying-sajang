@@ -1,5 +1,6 @@
 package com.community.hululuuuu.controller;
 
+import com.community.hululuuuu.product.ProductService;
 import com.community.hululuuuu.sell.SellCommand;
 import com.community.hululuuuu.sell.SellService;
 import com.community.hululuuuu.wallet.WalletService;
@@ -18,10 +19,12 @@ public class SellController {
 
     private SellService sellService;
     private WalletService walletService;
+    private ProductService productService;
 
-    public SellController (SellService sellService, WalletService walletService) {
+    public SellController (SellService sellService, WalletService walletService, ProductService productService) {
         this.sellService = sellService;
         this.walletService = walletService;
+        this.productService = productService;
     }
 
 
@@ -44,6 +47,7 @@ public class SellController {
     public ModelAndView submitSellForm(SellCommand sellCommand) {
         sellService.createSell(sellCommand);
         walletService.plusWalletMoney(sellCommand);
+        productService.updateProductAmount(sellCommand);
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/sell/sellList");
         return mav;

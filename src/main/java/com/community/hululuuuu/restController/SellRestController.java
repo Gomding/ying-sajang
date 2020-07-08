@@ -1,5 +1,6 @@
 package com.community.hululuuuu.restController;
 
+import com.community.hululuuuu.product.ProductService;
 import com.community.hululuuuu.sell.SellCommand;
 import com.community.hululuuuu.sell.SellService;
 import com.community.hululuuuu.wallet.WalletService;
@@ -13,21 +14,25 @@ public class SellRestController {
 
     private SellService sellService;
     private WalletService walletService;
+    private ProductService productService;
 
-    public SellRestController(SellService sellService, WalletService walletService) {
+    public SellRestController(SellService sellService, WalletService walletService, ProductService productService) {
         this.sellService = sellService;
         this.walletService = walletService;
+        this.productService = productService;
     }
 
     @PutMapping("/sellMod/{id}")
     public ResponseEntity<?> updateSell(@PathVariable("id")Long id, @RequestBody SellCommand sellCommand) {
-        sellService.updateSell(sellCommand, id);
+        productService.afterUpdateSellAmount(sellCommand, sellService.sellFindById(id).getSellAmount());
         walletService.updatePlusWalletMoney(sellCommand, id);
+        sellService.updateSell(sellCommand, id);
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
     @DeleteMapping("/sellList/{id}")
     public ResponseEntity<?> deleteSell(@PathVariable("id")Long id) {
+        productService.afterDelSellAmount(sellService.sellFindById(id));
         walletService.canclePlusWalletMoney(id);
         sellService.deleteSell(id);
         return new ResponseEntity<>("{}", HttpStatus.OK);
