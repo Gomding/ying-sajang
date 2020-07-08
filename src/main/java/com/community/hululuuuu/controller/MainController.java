@@ -38,7 +38,9 @@ public class MainController {
         Product toothPaste = productService.selectToothPaste();
         List<Wallet> wallet = walletService.findTop5FromWallet();
         Wallet walletMoney = walletService.nowWallet();
+        int oneMonthProfit = sellService.select1MonthPrice();
 
+        mav.addObject("oneMonthProfit", oneMonthProfit);
         mav.addObject("buyTop", buyTop5);
         mav.addObject("sellTop", sellTop3);
         mav.addObject("toothPaste", toothPaste);

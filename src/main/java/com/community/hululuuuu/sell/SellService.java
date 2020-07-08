@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,7 +21,7 @@ public class SellService {
 
     public Page<Sell> findSellList(Pageable pageable) {
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
-        return sellRepository.findAll(pageable);
+        return sellRepository.findAllByOrderBySellDateDesc(pageable);
     }
 
 
@@ -58,5 +59,14 @@ public class SellService {
 
     public Sell sellFindById(Long id) {
         return sellRepository.getOne(id);
+    }
+
+    public int select1MonthPrice() {
+        List<Sell> sell = sellRepository.findBySellDateBetween(LocalDate.now().minusMonths(1), LocalDate.now().plusDays(1));
+        int sum = 0;
+        for (int i = 0; i < sell.size(); i++) {
+            sum += sell.get(i).getSellProfit();
+        }
+        return sum;
     }
 }

@@ -19,7 +19,7 @@ public class YiyingService {
 
     public Page<Yiying> findBuyList(Pageable pageable) {
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
-        return yiyingRepository.findAll(pageable);
+        return yiyingRepository.findAllByOrderByYiyingBuydateDesc(pageable);
     }
 
     public List<Yiying> findTop5() {

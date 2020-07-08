@@ -21,7 +21,7 @@ public class ProductService {
 
     public Page<Product> findProductList(Pageable pageable) {
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
-        return productRepository.findAll(pageable);
+        return productRepository.findAllByOrderByProductModdateDesc(pageable);
     }
 
     public void addProduct (ProductCommand productCommand) {

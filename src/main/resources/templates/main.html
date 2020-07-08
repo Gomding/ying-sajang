@@ -38,9 +38,9 @@
         <div class="bdgreen col-xs-10 col-md-4 text-center pull-left mg-bl">
             <h3 class="">최근 수익 상황</h3><br/>
             <div class="">
-                <span><h4>최근 한달 수익 : <a th:text="원"></a></h4></span>
-                <span><h4>현재 치약 원가 : <a th:text="${toothPaste?.productCostprice}"></a>원</h4></span>
-                <span><h4>치약 재고 : <a th:text="${toothPaste?.productAmount}"></a>개</h4></span>
+                <span><h4>최근 한달 수익 : <a th:text="${oneMonthProfit} + '원'"></a></h4></span>
+                <span><h4>현재 치약 원가 : <a th:text="${toothPaste?.productCostprice} + '원'"></a></h4></span>
+                <span><h4>치약 재고 : <a th:text="${toothPaste?.productAmount} + '개'"></a></h4></span>
             </div>
             <div>
                 <table class="table table-hover">
@@ -52,7 +52,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="sell : ${sellTop}">
-                        <td th:text="${sell.sellName}"></td>
+                        <td th:text="${sell.sellProduct}"></td>
                         <td th:text="${sell.sellProfit}"></td>
                     </tr>
                     </tbody>
