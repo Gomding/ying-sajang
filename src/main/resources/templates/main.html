@@ -5,6 +5,7 @@
     <title>메인</title>
     <link rel="stylesheet" th:href="@{/css/base.css}" />
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <style>
@@ -35,13 +36,13 @@
     <div th:replace="layout/header::header"></div>
     <div class="container" style="padding-top:100px;">
         <div class="row">
-        <div class="bdgreen col-xs-10 col-md-4 text-center pull-left mg-bl">
+        <div class="bdgreen col-xs-10 col-md-5 text-center pull-left mg-bl">
             <h3 class="">최근 수익 상황</h3><br/>
             <div class="">
                 <span><h4>최근 한달 수익 : <a th:text="${oneMonthProfit} + '원'"></a></h4></span>
                 <span><h4>현재 치약 원가 : <a th:text="${toothPaste?.productCostprice} + '원'"></a></h4></span>
                 <span><h4>치약 재고 : <a th:text="${toothPaste?.productAmount} + '개'"></a></h4></span>
-            </div>
+            </div><br/>
             <div>
                 <table class="table table-hover">
                     <thead>
@@ -60,11 +61,11 @@
             </div>
             <p class="text-right"><a href="/sell/sellList">더보기</a></p>
         </div>
-        <div class="bdgreen col-xs-10 col-md-4 pull-right mg-br">
+        <div class="bdgreen col-xs-10 col-md-5 pull-right mg-br">
             <h3 class="text-center">잉사장님의 지갑 속 상황</h3><br/>
-            <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.getWalletMoney()} + '원'"></a></h4></span><br/>
-            <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.getWalletModdate()}"></a></h4></span>
-            <span class="text-center"><h4>최근 한달 지출 : <a>10000원</a></h4></span>
+            <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.walletMoney} + '원'"></a></h4></span><br/>
+            <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.walletModdate}"></a></h4></span>
+            <span class="text-center"><h4>최근 한달 지출 : <a th:text="${oneMonthSpendMoney} + '원'"></a></h4></span>
             <br/><br/>
             <span><h4> 최근 지갑 조회내역 </h4></span>
             <div>
@@ -78,16 +79,16 @@
                     </thead>
                     <tbody>
                     <tr th:each="wallet : ${walletTop5}">
-                        <td th:text="${wallet.getWalletMoney()}"></td>
-                        <td th:text="${wallet.getWalletMod()}"></td>
-                        <td th:text="${wallet.getWalletRecord()}"></td>
+                        <td th:text="${wallet.walletMoney}"></td>
+                        <td th:text="${wallet.walletMod}"></td>
+                        <td th:text="${wallet.walletRecord}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <p class="text-right"><a>더보기</a></p>
         </div>
-        <div class="bdgreen col-xs-10 col-md-4 pull-left mg-bl">
+        <div class="bdgreen col-xs-10 col-md-5 pull-left mg-bl">
             <h3 class="text-center">메모장</h3>
             <br/>
             <input class="form-control" id="link" name="link" placeholder="구매하고 싶은 상품의 사이트 링크를 적어주세요"><br/>
@@ -99,7 +100,7 @@
                 <a class="btn btn-success btn-block" id="getMemo">메모 저장</a>
             </div>
         </div>
-        <div class="bdgreen col-xs-10 col-md-4 pull-right mg-br">
+        <div class="bdgreen col-xs-10 col-md-5 pull-right mg-br">
             <h3 class="text-center">최근 구매 목록</h3>
 
             <div>
@@ -120,7 +121,7 @@
             </div>
             <br>
             <div>
-                <span><h4 class="text-center">최근 1달 지출 : <a>10000원</a></h4> </span>
+                <span><h4 class="text-center">최근 한달 지출 : <a>10000원</a></h4> </span>
 
             </div>
             <p class="text-right"><a href="/yiying/buyList">더보기</a></p>

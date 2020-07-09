@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -50,6 +51,20 @@ public class YiyingService {
         Yiying yiying = yiyingRepository.getOne(id);
         yiying.update(buyCommand);
         yiyingRepository.save(yiying);
+    }
+
+    public int sum1MonthSpendMoney() {
+
+        int sum = 0;
+
+        List<Yiying> oneMonthList =
+                yiyingRepository.findByYiyingBuydateBetween(LocalDate.now().minusMonths(1), LocalDate.now().plusDays(1));
+
+        for (int i = 0; i < oneMonthList.size(); i++) {
+            sum += oneMonthList.get(i).getYiyingPrice();
+        }
+
+        return sum;
     }
 
 }

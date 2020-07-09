@@ -61,7 +61,7 @@ public class SellService {
         return sellRepository.getOne(id);
     }
 
-    public int select1MonthPrice() {
+    public int sum1MonthProfit() {
         List<Sell> sell = sellRepository.findBySellDateBetween(LocalDate.now().minusMonths(1), LocalDate.now().plusDays(1));
         int sum = 0;
         for (int i = 0; i < sell.size(); i++) {
