@@ -54,17 +54,22 @@ public class WalletService {
         int diffMoney = oldSellMoney - newSellMoney;
         String sign = "+";
 
-        if (diffMoney < 0) sign = "-";
+        if (diffMoney == 0) { }
+
+        else {
+
+            if (diffMoney < 0) sign = "-";
 
             walletRepository.save(
                     Wallet.builder()
-                    .walletMoney(nowWalletMoney + diffMoney)
-                    .walletRecord(sellCommand.getProduct())
-                    .walletMod(sign + Math.abs(diffMoney) + " (" + oldSellMoney + " - > " + newSellMoney + " 수정됨)")
-                    .walletModdate(sellCommand.getDate())
-                    .walletDate(LocalDateTime.now())
-                    .build()
+                            .walletMoney(nowWalletMoney + diffMoney)
+                            .walletRecord(sellCommand.getProduct())
+                            .walletMod(sign + Math.abs(diffMoney) + " (" + oldSellMoney + " - > " + newSellMoney + " 수정됨)")
+                            .walletModdate(sellCommand.getDate())
+                            .walletDate(LocalDateTime.now())
+                            .build()
             );
+        }
     }
 
     public void canclePlusWalletMoney(Long id) {
@@ -120,17 +125,22 @@ public class WalletService {
         int diffMoney = oldBuyMoney - newBuyMoney;
         String sign = "+";
 
-        if (diffMoney < 0) sign = "-";
+        if (diffMoney == 0) {}
 
-        walletRepository.save(
-                Wallet.builder()
-                        .walletMoney(nowWalletMoney + diffMoney)
-                        .walletRecord(buyCommand.getName())
-                        .walletMod(sign + Math.abs(diffMoney) + " (" + oldBuyMoney + " - > " + newBuyMoney + " 수정됨)")
-                        .walletModdate(buyCommand.getBuydate())
-                        .walletDate(LocalDateTime.now())
-                        .build()
-        );
+        else {
+
+            if (diffMoney < 0) sign = "-";
+
+            walletRepository.save(
+                    Wallet.builder()
+                            .walletMoney(nowWalletMoney + diffMoney)
+                            .walletRecord(buyCommand.getName())
+                            .walletMod(sign + Math.abs(diffMoney) + " (" + oldBuyMoney + " - > " + newBuyMoney + " 수정됨)")
+                            .walletModdate(buyCommand.getBuydate())
+                            .walletDate(LocalDateTime.now())
+                            .build()
+            );
+        }
     }
 
 
