@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/base.css}" />
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <style>
@@ -38,6 +39,11 @@
         <div class="row">
         <div class="bdgreen col-xs-10 col-md-5 text-center pull-left mg-bl">
             <h3 class="">최근 수익 상황</h3><br/>
+            <div class="moreList">
+                <a href="/sell/sellList">
+                    <i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
             <div class="">
                 <span><h4>최근 한달 수익 : <a th:text="${oneMonthProfit} + '원'"></a></h4></span>
                 <span><h4>현재 치약 원가 : <a th:text="${toothPaste?.productCostprice} + '원'"></a></h4></span>
@@ -59,10 +65,14 @@
                     </tbody>
                 </table>
             </div>
-            <p class="text-right"><a href="/sell/sellList">더보기</a></p>
         </div>
         <div class="bdgreen col-xs-10 col-md-5 pull-right mg-br">
             <h3 class="text-center">잉사장님의 지갑 속 상황</h3><br/>
+            <div class="moreList">
+                <a href="#">
+                    <i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
             <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.walletMoney} + '원'"></a></h4></span><br/>
             <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.walletModdate}"></a></h4></span>
             <span class="text-center"><h4>최근 한달 지출 : <a th:text="${oneMonthSpendMoney} + '원'"></a></h4></span>
@@ -102,7 +112,11 @@
         </div>
         <div class="bdgreen col-xs-10 col-md-5 pull-right mg-br">
             <h3 class="text-center">최근 구매 목록</h3>
-
+            <div class="moreList">
+                <a href="/yiying/buyList">
+                    <i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
             <div>
                 <table class="table table-hover">
                     <thead>

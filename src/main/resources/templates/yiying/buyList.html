@@ -9,17 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <style>
-
-        .deleteBtn {
-            padding: 0;
-            width:20px;
-            display: block;
-            margin-left: auto;
-        }
-
-    </style>
-
 </head>
 <body>
 <div th:replace="layout/header::header"></div>
@@ -28,30 +17,30 @@
             <h1>구매 목록</h1>
         </div>
         <div class="pull-right" style="margin:10px 0;">
-            <a href="/yiying/buyForm" class="btn btn-primary btn-block">구매내역 등록</a>
+            <a href="/yiying/buyForm" class="btn btn-success btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>구매내역 등록</a>
         </div>
         <br/><br/><br/>
 
         <div id="mainHide">
-            <table class="table table-hover">
+            <table class="table table-bordered table-hover text-center">
                 <thead>
                 <tr>
-                    <th class="col-md-1">#</th>
+                    <th class="col-md-1 bl-none">#</th>
                     <th class="col-md-2">구매한 물품</th>
                     <th class="col-md-2">수량</th>
                     <th class="col-md-2">가격</th>
                     <th class="col-md-2">구매 날짜</th>
-                    <th class="col-md-1">삭제</th>
+                    <th class="col-md-1 br-none">삭제</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="buy : ${buyList}">
-                    <td th:text="${buy.yiyingId}"></td>
+                <tr class="text-center" th:each="buy : ${buyList}">
+                    <td class="bl-none" th:text="${buy.yiyingId}"></td>
                     <td><a th:href="'/yiying/buyDetail?id='+${buy.yiyingId}" th:text="${buy.yiyingName}"></a></td>
                     <td th:text="${buy.yiyingAmount}"></td>
                     <td th:text="${buy.yiyingPrice}"></td>
                     <td th:text="${buy.yiyingBuydate}"></td>
-                    <td style="padding: 8px 12px;">
+                    <td class="br-none" style="padding: 12px 12px;">
                         <button type="button" class="deleteBtn btn btn-default" aria-label="deleteBtn">
                             <input class="buy_id" th:value="${buy.yiyingId}" type="hidden"/>
                             <span class="fa fa-remove"></span>

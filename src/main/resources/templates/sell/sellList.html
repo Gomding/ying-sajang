@@ -8,16 +8,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-    <style>
-
-        .deleteBtn {
-            padding: 0;
-            width:20px;
-            display: block;
-            margin-left: auto;
-        }
-
-    </style>
 
 </head>
 <body>
@@ -27,15 +17,15 @@
         <h1>판매 목록</h1>
     </div>
     <div class="pull-right" style="margin:10px 0;">
-        <a href="/sell/sellForm" class="btn btn-primary btn-block">판매내역 등록</a>
+        <a href="/sell/sellForm" class="btn btn-success btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>판매내역 등록</a>
     </div>
     <br/><br/><br/>
 
     <div id="mainHide">
-        <table class="table table-hover">
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th class="col-md-1">#</th>
+                <th class="col-md-1 bl-none">#</th>
                 <th class="col-md-1">구매자</th>
                 <th class="col-md-2">판매 상품</th>
                 <th class="col-md-2">판매 금액</th>
@@ -43,12 +33,12 @@
                 <th class="col-md-1">수량</th>
                 <th class="col-md-1">결제 수단</th>
                 <th class="col-md-2">판매 날짜</th>
-                <th class="col-md-1">삭제</th>
+                <th class="col-md-1 br-none">삭제</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="sell : ${sellList}">
-                <td th:text="${sell.sellId}"></td>
+            <tr class="text-center" th:each="sell : ${sellList}">
+                <td class="bl-none" th:text="${sell.sellId}"></td>
                 <td><a th:href="'/sell/sellMod?id='+${sell.sellId}" th:text="${sell.sellName}"></a></td>
                 <td th:text="${sell.sellProduct}"></td>
                 <td th:text="${sell.sellPrice}"></td>
@@ -56,7 +46,7 @@
                 <td th:text="${sell.sellAmount}"></td>
                 <td th:text="${sell.sellMof}"></td>
                 <td th:text="${sell.sellDate}"></td>
-                <td style="padding: 8px 12px;">
+                <td class="br-none" style="padding: 12px 12px;">
                     <button type="button" class="deleteBtn btn btn-default" aria-label="deleteBtn">
                         <input class="sell_id" th:value="${sell.sellId}" type="hidden"/>
                         <span class="fa fa-remove"></span>
