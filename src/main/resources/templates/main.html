@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/base.css}" />
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -30,13 +31,57 @@
             height:160px;
         }
 
+        img {
+            max-width: 100%;
+            margin: 0;
+        }
+
+        #link-title {
+            margin-top:31px;
+            font-size: 40px;
+            font-family: 'Roboto', sans-serif;
+            color:forestgreen;
+        }
+
+        .pd-0 {
+            padding: 0;
+        }
+
+        .pb-69 {padding-bottom: 67px;}
+
+        .link-pd {
+            padding: 15px 0;
+        }
+
+        @media (max-width: 991px) {
+            body{padding-top: 93px}
+        }
+
+        body {
+            padding-bottom: 0;
+        }
+
+        footer {
+            position: inherit;
+        }
+
     </style>
 
 </head>
 <body>
     <div th:replace="layout/header::header"></div>
-    <div class="container" style="padding-top:100px;">
+    <div class="container pb-69">
         <div class="row">
+            <div class="col-md-offset-1 col-md-10 link-pd">
+                <a href="https://smartstore.naver.com/hulululu">
+                    <div class="col-md-12">
+                        <div class="col-md-2 pd-0">
+                            <img class="pull-left" src="/images/hululuuuu.jpeg" width="120" height="120" alt="후루루" title="후루루"/>
+                        </div>
+                        <div class="col-md-8 link-title text-center" id="link-title"><b>Hululuuuu</b></div>
+                    </div>
+                </a>
+            </div>
         <div class="bdgreen col-xs-10 col-md-5 text-center pull-left mg-bl">
             <h3 class="">최근 수익 상황</h3><br/>
             <div class="moreList">
@@ -100,12 +145,14 @@
         </div>
         <div class="bdgreen col-xs-10 col-md-5 pull-left mg-bl">
             <h3 class="text-center">메모장</h3>
+            <div class="moreList">
+                <a href="/memo/memoList">
+                    <i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
             <br/>
             <input class="form-control" id="link" name="link" placeholder="구매하고 싶은 상품의 사이트 링크를 적어주세요"><br/>
             <textarea class="memo" id="content" name="content" placeholder="구매하고싶은 상품의 내용을 적어주세요."></textarea>
-            <div class="pull-left" style="margin:10px 0;">
-                <a href="/memo/memoList" class="btn btn-default btn-block">메모 목록 보기</a>
-            </div>
             <div class="pull-right" style="width: 100px; margin:10px 0;">
                 <a class="btn btn-success btn-block" id="getMemo">메모 저장</a>
             </div>
@@ -138,7 +185,6 @@
                 <span><h4 class="text-center">최근 한달 지출 : <a>10000원</a></h4> </span>
 
             </div>
-            <p class="text-right"><a href="/yiying/buyList">더보기</a></p>
         </div>
         </div>
 

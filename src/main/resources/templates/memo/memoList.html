@@ -20,12 +20,22 @@
             margin-top:30px
         }
 
+        body {
+            padding-bottom: 0;
+        }
+
+        footer {
+            position: inherit;
+        }
+
+        .pb-69 {padding-bottom: 67px;}
+
     </style>
 
 </head>
 <body>
 <div th:replace="layout/header::header"></div>
-    <div class="container">
+    <div class="container pb-69">
         <div class="page-header">
             <h1>메모 목록</h1>
         </div>
