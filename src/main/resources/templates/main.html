@@ -105,7 +105,7 @@
                     <tbody>
                     <tr th:each="sell : ${sellTop}">
                         <td th:text="${sell.sellProduct}"></td>
-                        <td th:text="${sell.sellProfit}"></td>
+                        <td th:text="${sell.sellProfit} + '원'"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -119,8 +119,8 @@
                 </a>
             </div>
             <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.walletMoney} + '원'"></a></h4></span><br/>
-            <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.walletModdate}"></a></h4></span>
             <span class="text-center"><h4>최근 한달 지출 : <a th:text="${oneMonthSpendMoney} + '원'"></a></h4></span>
+            <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.walletModdate}"></a></h4></span>
             <br/><br/>
             <span><h4> 최근 지갑 조회내역 </h4></span>
             <div>
@@ -134,14 +134,13 @@
                     </thead>
                     <tbody>
                     <tr th:each="wallet : ${walletTop5}">
-                        <td th:text="${wallet.walletMoney}"></td>
+                        <td th:text="${wallet.walletMoney + '원'}"></td>
                         <td th:text="${wallet.walletMod}"></td>
                         <td th:text="${wallet.walletRecord}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-right"><a>더보기</a></p>
         </div>
         <div class="bdgreen col-xs-10 col-md-5 pull-left mg-bl">
             <h3 class="text-center">메모장</h3>
@@ -175,7 +174,7 @@
                     <tbody>
                     <tr th:each="buy : ${buyTop}">
                         <td th:text="${buy.yiyingName}"></td>
-                        <td th:text="${buy.yiyingPrice}"></td>
+                        <td th:text="${buy.yiyingPrice} + '원'"></td>
                     </tr>
                     </tbody>
                 </table>
