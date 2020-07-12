@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Controller
 @RequestMapping("/sell")
 public class SellController {
@@ -56,8 +59,18 @@ public class SellController {
     @GetMapping({"/sellMod", "/sellMod/"})
     public ModelAndView modSellForm(@RequestParam(value = "id", defaultValue = "0") Long id) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("sell", sellService.findSellById(id));
+        mav.addObject("sell", sellService.sellFindById(id));
         mav.setViewName("sell/sellMod");
+        return mav;
+    }
+
+    @GetMapping({"/sellSearchList", "/sellSearchList/"})
+    public ModelAndView searchSellList(@RequestParam(value = "start")String start, @RequestParam(value = "end")String end, @PageableDefault Pageable pageable) {
+        LocalDate startDate = LocalDate.parse(start, DateTimeFormatter.ISO_DATE);
+        LocalDate endDate = LocalDate.parse(end, DateTimeFormatter.ISO_DATE);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("sellList", sellService.searchSellList(pageable, startDate, endDate));
+        mav.setViewName("sell/sellList");
         return mav;
     }
 

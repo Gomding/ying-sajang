@@ -34,7 +34,7 @@ public class MainController {
 
         ModelAndView mav = new ModelAndView();
         List<Yiying> buyTop5 = yiyingService.findTop5();
-        List<Sell> sellTop3 = sellService.findSellByyTop3();
+        List<Sell> sellTop3 = sellService.findSellByTop3();
         Product toothPaste = productService.selectToothPaste();
         List<Wallet> wallet = walletService.findTop5FromWallet();
         Wallet walletMoney = walletService.nowWallet();
