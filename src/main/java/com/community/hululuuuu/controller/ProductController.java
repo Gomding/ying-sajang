@@ -53,6 +53,20 @@ public class ProductController {
         return mav;
     }
 
+    @GetMapping({"/productSearchList", "/productSearchList/"})
+    public ModelAndView searchProductList(@PageableDefault Pageable pageable, @RequestParam("productName")String productName) {
+        ModelAndView mav = new ModelAndView();
+
+        if (productName.equals("") || productName.isEmpty()) {
+            mav.setViewName("redirect:/product/productList");
+        }
+        else {
+            mav.addObject("productList", productService.searchProductList(pageable, productName));
+            mav.setViewName("product/productList");
+        }
+        return mav;
+    }
+
 
 
 }

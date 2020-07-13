@@ -1,4 +1,6 @@
 body {padding-top: 47px; padding-bottom: 67px}
+.conHeight {min-height: 700px;}
+@media (max-width: 991px) {  body{padding-top: 93px;}  .conHeight{min-height: 1623px;} }
 .menuList {color: black !important;}
 thead { background-color: #FAFAFA}
 .table-bordered {border-top: 1px solid black !important; border-right: none !important; border-left: none  !important;}

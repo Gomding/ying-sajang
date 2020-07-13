@@ -2,18 +2,43 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>잉사장님의 구매 목록</title>
+    <title>상품 목록</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/base.css}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+    <style>
+
+        .searchProduct { position: relative; top:13px;}
+
+        #inputName {
+            height: 34px;
+            width: 220px;
+            padding-left: 10px;
+        }
+
+        #searchProduct {
+            border: none;
+            font-size: 20px;
+            position: relative;
+            background: none;
+            right: 41px;
+            bottom: 1px;
+        }
+
+    </style>
+
 </head>
 <body>
 <div th:replace="layout/header::header"></div>
-<div class="container">
+<div class="container conHeight">
     <div class="page-header">
         <h1>상품 목록</h1>
+    </div>
+    <div class="pull-left searchProduct">
+        <input type="text" class="" id="inputName" name="inputName"/>
+        <a id="searchProduct" type="button" class="btn btn-default"><i class="fa fa-search"></i></a>
     </div>
     <div class="pull-right" style="width: 100px; margin:10px 0;">
         <a href="/product/productForm" class="btn btn-success btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>상품 등록</a>
@@ -89,11 +114,23 @@
                     location.href = "/product/productList";
                 },
                 error: function () {
-                    alert($("#product_id").val());
-                    alert("삭제 실패!");
+                    alert("삭제 실패! 관리자에게 문의해주세요!");
                 }
             });
         }
+    });
+
+    $("#searchProduct").click(function () {
+        $.ajax({
+            url: "http://ec2-15-165-154-135.ap-northeast-2.compute.amazonaws.com:8080/product/productSearchList?productName=" + $("#inputName").val(),
+            type: "GET",
+            success: function () {
+                location.href = "/product/productSearchList?productName=" + $("#inputName").val();
+            },
+            error: function () {
+                alert("검색 실패! 관리자에게 문의해주세요!");
+            }
+        });
     });
 
 </script>

@@ -32,5 +32,8 @@ public class MemoService {
         return memoRepository.findAll(pageable);
     }
 
+    public void deleteMemo(Long id) {
+        memoRepository.deleteById(id);
+    }
 
 }

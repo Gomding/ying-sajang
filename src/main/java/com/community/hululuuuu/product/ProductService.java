@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -70,6 +71,11 @@ public class ProductService {
         int diffAmount = oldAmount - sellAmount;
         product.setProductAmount(product.getProductAmount() + diffAmount);
         productRepository.save(product);
+    }
+
+    public Page<Product> searchProductList(Pageable pageable, String productName) {
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        return productRepository.findByProductName(pageable, productName);
     }
 
 }

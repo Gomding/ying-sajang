@@ -17,7 +17,9 @@
         .memo-container {
             border: 2px solid #f0ad4e;
             border-radius: 20px;
-            margin-top:30px
+            margin-top:30px;
+            padding: 10px 40px;
+
         }
 
         body {
@@ -30,12 +32,18 @@
 
         .pb-69 {padding-bottom: 67px;}
 
+        .deleteBtn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+
     </style>
 
 </head>
 <body>
 <div th:replace="layout/header::header"></div>
-    <div class="container pb-69">
+    <div class="container pb-69 conHeight">
         <div class="page-header">
             <h1>메모 목록</h1>
         </div>
@@ -43,6 +51,12 @@
             <div class="memo-container col-md-offset-3 col-md-6" th:each="memoList : ${memoList}">
                 <br/>
                 <h4 th:text="${memoList.memoId} + '번 메모'"></h4><br/>
+                <div>
+                    <button type="button" class="deleteBtn btn btn-default" aria-label="deleteBtn">
+                        <input class="memo_id" th:value="${memoList.memoId}" type="hidden"/>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
                 <table class="table table-hover">
                     <tbody>
                     <tr>
@@ -69,5 +83,25 @@
         </div>
     </div>
 <div th:replace="layout/footer::footer"></div>
+
+<script>
+    $(".deleteBtn").click(function () {
+        if (confirm("삭제하시겠습니까?")) {
+            $.ajax({
+                url: "http://ec2-15-165-154-135.ap-northeast-2.compute.amazonaws.com:8080/memo/memoList/" + $(this).children(".memo_id").val(),
+                type: "DELETE",
+                success: function () {
+                    alert("삭제 성공!");
+                    location.href = "/memo/memoList";
+                },
+                error: function () {
+                    alert($(this).children(".memo_id").val());
+                    alert("삭제 실패!");
+                }
+            });
+        }
+    });
+
+</script>
 </body>
 </html>

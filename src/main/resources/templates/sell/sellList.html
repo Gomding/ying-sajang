@@ -27,7 +27,7 @@
 </head>
 <body>
 <div th:replace="layout/header::header"></div>
-<div class="container pb-69">
+<div class="container pb-69 conHeight">
     <div class="page-header">
         <h1>판매 목록</h1>
     </div>
@@ -115,7 +115,7 @@
                 },
                 error: function () {
                     alert($("#sell_id").val());
-                    alert("삭제 실패!");
+                    alert("삭제 실패! 관리자에게 문의해주세요!");
                 }
             });
         }
@@ -126,11 +126,10 @@
             url: "http://ec2-15-165-154-135.ap-northeast-2.compute.amazonaws.com:8080/sell/sellSearchList?start=" + $("#start").val() + "&end=" + $("#end").val(),
             type: "GET",
             success: function () {
-                alert("검색 성공!");
                 location.href = "/sell/sellSearchList?start=" + $("#start").val() + "&end=" + $("#end").val();
             },
             error: function () {
-                alert("검색 실패!");
+                alert("검색 실패! 관리자에게 문의해주세요!");
             }
         });
     });

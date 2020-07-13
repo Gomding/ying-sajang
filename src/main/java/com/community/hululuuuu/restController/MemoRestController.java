@@ -4,10 +4,7 @@ import com.community.hululuuuu.memo.MemoCommand;
 import com.community.hululuuuu.memo.MemoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/memo")
@@ -22,6 +19,12 @@ public class MemoRestController {
     @PostMapping("/memoList")
     public ResponseEntity<?> createMemo(@RequestBody MemoCommand memoCommand) {
         memoService.createMemo(memoCommand);
+        return new ResponseEntity<>("{}", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/memoList/{id}")
+    public ResponseEntity<?> deleteMemo(@PathVariable("id")Long id) {
+        memoService.deleteMemo(id);
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
