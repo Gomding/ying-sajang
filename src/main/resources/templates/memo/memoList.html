@@ -38,6 +38,10 @@
             right: 30px;
         }
 
+        .mr-25per {
+            margin-right: 25%;
+        }
+
     </style>
 
 </head>
@@ -48,7 +52,7 @@
             <h1>메모 목록</h1>
         </div>
         <div class="memoList-container">
-            <div class="memo-container col-md-offset-3 col-md-6" th:each="memoList : ${memoList}">
+            <div class="memo-container col-md-offset-3 col-md-6 mr-25per" th:each="memoList : ${memoList}">
                 <br/>
                 <h4 th:text="${memoList.memoId} + '번 메모'"></h4><br/>
                 <div>
@@ -81,6 +85,30 @@
                 </table>
             </div>
         </div>
+
+        <nav aria-label="Page navigation" style="text-align: center;">
+            <ul class="pagination" th:with="startNumber=${T(Math).floor(memoList.number/10)}*10+1,
+                                    endNumber=(${memoList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${memoList.totalPages}">
+                <li><a href="/memo/memoList?page=1">&laquo;</a></li>
+                <li th:style="${memoList.first} ? 'display:none'">
+                    <a th:href="@{/memo/memoList(page=${memoList.number})}">&lsaquo;</a>
+                </li>
+                <li th:each="page :${#numbers.sequence(startNumber, endNumber)}"
+                    th:class="(${page} == ${memoList.number}+1) ? 'active'">
+                    <a th:href="@{/memo/memoList(page=${page})}" th:text="${page}">
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+                <li th:style="${memoList.last} ? 'display:none'">
+                    <a th:href="@{/memo/memoList(page=${memoList.number}+2)}">&rsaquo;</a>
+                </li>
+                <li>
+                    <a th:href="@{/memo/memoList(page=${memoList.totalPages})}">&raquo;</a>
+                </li>
+
+            </ul>
+        </nav>
+
     </div>
 <div th:replace="layout/footer::footer"></div>
 
