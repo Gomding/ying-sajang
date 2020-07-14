@@ -49,6 +49,7 @@
                     <div>
                         <label>결제수단</label>
                         <select class="form-control" id="mofSelect" name="mofSelect">
+                            <option value="">결제수단 선택</option>
                             <option value="3.74">신용카드</option>
                             <option value="1.65">계좌이체</option>
                             <option value="1">무통장입금</option>
@@ -98,6 +99,12 @@
     $("#mofSelect").change(function() {
 
         var commission = $(this).val();
+
+        if(commission == "") {
+            $("#commission").text("");
+            $("#profit").val(0);
+            return;
+        }
 
         var price = $("#price").val();
 

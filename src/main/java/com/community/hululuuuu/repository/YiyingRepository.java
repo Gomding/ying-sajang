@@ -15,4 +15,5 @@ public interface YiyingRepository extends JpaRepository<Yiying, Long> {
     List<Yiying> findTop5ByOrderByYiyingBuydateDesc();
     Page<Yiying> findAllByOrderByYiyingBuydateDesc(Pageable pageable);
     List<Yiying> findByYiyingBuydateBetween(LocalDate start, LocalDate end);
+    Page<Yiying> findByYiyingBuydateBetween(Pageable pageable, LocalDate start, LocalDate end);
 }

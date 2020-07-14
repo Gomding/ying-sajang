@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/yiying")
@@ -66,6 +68,16 @@ public class YiyingController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("buyCommand", yiyingService.findById(id));
         mav.setViewName("yiying/buyMod");
+        return mav;
+    }
+
+    @GetMapping({"/buySearchList", "/buySearchList/"})
+    public ModelAndView searchSellList(@RequestParam(value = "start")String start, @RequestParam(value = "end")String end, @PageableDefault Pageable pageable) {
+        LocalDate startDate = LocalDate.parse(start, DateTimeFormatter.ISO_DATE);
+        LocalDate endDate = LocalDate.parse(end, DateTimeFormatter.ISO_DATE);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("buyList", yiyingService.buySearchList(pageable, startDate, endDate));
+        mav.setViewName("yiying/buyList");
         return mav;
     }
 
