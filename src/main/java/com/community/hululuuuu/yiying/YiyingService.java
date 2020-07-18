@@ -1,5 +1,6 @@
 package com.community.hululuuuu.yiying;
 
+import com.community.hululuuuu.myComponent.PageableDefault;
 import com.community.hululuuuu.repository.YiyingRepository;
 import com.community.hululuuuu.sell.Sell;
 import org.springframework.data.domain.Page;
@@ -20,7 +21,7 @@ public class YiyingService {
     }
 
     public Page<Yiying> findBuyList(Pageable pageable) {
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageableDefault.setPageable(pageable);
         return yiyingRepository.findAllByOrderByYiyingBuydateDesc(pageable);
     }
 
@@ -69,7 +70,7 @@ public class YiyingService {
     }
 
     public Page<Yiying> buySearchList(Pageable pageable, LocalDate start, LocalDate end) {
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageableDefault.setPageable(pageable);
         return yiyingRepository.findByYiyingBuydateBetween(pageable, start, end);
     }
 

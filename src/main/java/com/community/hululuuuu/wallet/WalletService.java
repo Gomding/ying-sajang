@@ -52,13 +52,9 @@ public class WalletService {
         int oldSellMoney = sellRepository.getOne(id).getSellProfit();
         int newSellMoney = sellCommand.getProfit();
         int diffMoney = oldSellMoney - newSellMoney;
-        String sign = "+";
+        String sign = diffMoney >= 0 ? "+" : "-";
 
-        if (diffMoney == 0) { }
-
-        else {
-
-            if (diffMoney < 0) sign = "-";
+        if (diffMoney != 0) {   // 돈이 변하지 않으면 계좌 내역을 생성할 필요가 없음
 
             walletRepository.save(
                     Wallet.builder()

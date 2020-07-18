@@ -1,8 +1,8 @@
 package com.community.hululuuuu.sell;
 
+import com.community.hululuuuu.myComponent.PageableDefault;
 import com.community.hululuuuu.repository.SellRepository;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +21,12 @@ public class SellService {
 
     // 전체 판매 리스트 + 페이징
     public Page<Sell> findSellList(Pageable pageable) {
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageableDefault.setPageable(pageable);
         return sellRepository.findAllByOrderBySellDateDesc(pageable);
     }
 
     // 판매 생성 메서드
-    public void createSell(@Valid SellCommand sellCommand) {
+    public void createSell(SellCommand sellCommand) {
 
         sellRepository.save(Sell.builder()
         .sellName(sellCommand.getName())
@@ -75,7 +75,7 @@ public class SellService {
 
     // 판매 검색(날짜 기준)
     public Page<Sell> searchSellList(Pageable pageable, LocalDate start, LocalDate end) {
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageableDefault.setPageable(pageable);
         return sellRepository.findBySellDateBetween(pageable, start, end);
     }
 }

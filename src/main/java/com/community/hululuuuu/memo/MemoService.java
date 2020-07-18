@@ -1,5 +1,6 @@
 package com.community.hululuuuu.memo;
 
+import com.community.hululuuuu.myComponent.PageableDefault;
 import com.community.hululuuuu.repository.MemoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,7 +29,7 @@ public class MemoService {
     }
 
     public Page<Memo> findMemoList(Pageable pageable) {
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageableDefault.setPageable(pageable);
         return memoRepository.findAll(pageable);
     }
 

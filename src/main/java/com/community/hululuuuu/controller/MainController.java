@@ -29,6 +29,13 @@ public class MainController {
         this.walletService = walletService;
     }
 
+    @GetMapping("/")
+    public ModelAndView index() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/index");
+        return mav;
+    }
+
     @GetMapping("/main")
     public ModelAndView main() {
 

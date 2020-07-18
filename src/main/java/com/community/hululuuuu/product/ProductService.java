@@ -1,14 +1,13 @@
 package com.community.hululuuuu.product;
 
+import com.community.hululuuuu.myComponent.PageableDefault;
 import com.community.hululuuuu.repository.ProductRepository;
 import com.community.hululuuuu.sell.Sell;
 import com.community.hululuuuu.sell.SellCommand;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -21,7 +20,7 @@ public class ProductService {
     }
 
     public Page<Product> findProductList(Pageable pageable) {
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageableDefault.setPageable(pageable);
         return productRepository.findAllByOrderByProductModdateDesc(pageable);
     }
 
@@ -74,7 +73,7 @@ public class ProductService {
     }
 
     public Page<Product> searchProductList(Pageable pageable, String productName) {
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageableDefault.setPageable(pageable);
         return productRepository.findByProductName(pageable, productName);
     }
 

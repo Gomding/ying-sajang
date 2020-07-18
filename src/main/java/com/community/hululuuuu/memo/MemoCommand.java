@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class MemoCommand {
 
     private String content;
+
     private String link;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

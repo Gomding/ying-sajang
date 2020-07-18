@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -40,6 +41,7 @@ public class Sell implements Serializable {
     private int sellProfit;      // 수익
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate sellDate; // 판매 날짜
 
     @Builder

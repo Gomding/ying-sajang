@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <!--header-->
+    <div th:fragment="mainHeader">
+        <nav class="navbar navbar-default navbar-fixed-top header-height" style="background-color: black; color: white; height:80px; border: none;">
+            <div class="container" style="margin-top: 15px;">
+                <div class="navbar-header">
+                    <a href="/" class="navbar-brand" style="text-decoration:none; margin-left:200px">
+                        <span style="vertical-align:middle; color: white; font-size: 28px;">PARK</span>
+                    </a>
+
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="color: black;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 180px; font-size: 16px">
+                        <li>
+                            <a href="/portfolio/profile" class="mainMenuList"> profile</a>
+                        </li>
+                        <li>
+                            <a href="" class="mainMenuList"> skills</a>
+                        </li>
+                        <li>
+                            <a href="" class="mainMenuList"> portfolio</a>
+                        </li>
+                        <li>
+                            <a href="" class="mainMenuList"> contacts</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--/header-->
+</html>
