@@ -86,7 +86,7 @@
             </li>
             <li th:each="page :${#numbers.sequence(startNumber, endNumber)}"
                 th:class="(${page} == ${sellList.number}+1) ? 'active'">
-                <a th:href="@{/producsellist(page=${page})}" th:text="${page}">
+                <a th:href="@{/sell/sellList(page=${page})}" th:text="${page}">
                     <span class="sr-only"></span>
                 </a>
             </li>

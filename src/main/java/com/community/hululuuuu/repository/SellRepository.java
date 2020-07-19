@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public interface SellRepository extends JpaRepository<Sell, Long> {
-    Sell findBySellName(String sellName);
     Page<Sell> findAllByOrderBySellDateDesc(Pageable pageable);
     List<Sell> findTop3ByOrderBySellDateDesc();
     Page<Sell> findBySellDateBetween(Pageable pageable, LocalDate start, LocalDate end);
     List<Sell> findBySellDateBetween(LocalDate start, LocalDate end);
+
 }
