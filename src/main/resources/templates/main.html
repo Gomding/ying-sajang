@@ -115,7 +115,6 @@
                 </a>
             </div>
             <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.walletMoney} + '원'"></a></h4></span><br/>
-            <span class="text-center"><h4>최근 한달 지출 : <a th:text="${oneMonthSpendMoney} + '원'"></a></h4></span>
             <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.walletModdate}"></a></h4></span>
             <br/><br/>
             <span><h4> 최근 지갑 조회내역 </h4></span>
@@ -160,7 +159,7 @@
                 </a>
             </div><br/>
             <div>
-                <span><h4 class="text-center">최근 한달 지출 : <a>10000원</a></h4> </span>
+                <span class="text-center"><h4>최근 한달 지출 : <a th:text="${oneMonthSpendMoney} + '원'"></a></h4></span>
 
             </div>
             <div>

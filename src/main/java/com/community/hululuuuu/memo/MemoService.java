@@ -3,7 +3,6 @@ package com.community.hululuuuu.memo;
 import com.community.hululuuuu.myComponent.PageableDefault;
 import com.community.hululuuuu.repository.MemoRepository;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
