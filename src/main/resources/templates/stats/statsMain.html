@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>통계 메인</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <style>
+        #selectMonth .btn {
+            margin-left: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div th:replace="layout/header::header"></div>
+<div class="container">
+    <div>
+        <button id="selectMonth" class="btn btn-default col-md-2 col-md-offset-1">2222-22</button>
+        <button type="button" class="btn btn-primary col-md-2">일별 현황</button>
+        <button type="button" class="btn btn-primary col-md-2">주별 현황</button>
+        <button type="button" class="btn btn-primary col-md-2">월별 현황</button>
+        <button type="button" class="btn btn-primary col-md-2">연별 현황</button>
+    </div>
+    <div id="calendar">
+
+    </div>
+</div>
+<div th:replace="layout/footer::footer"></div>
+</body>
+</html>
