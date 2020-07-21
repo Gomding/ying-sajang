@@ -24,7 +24,7 @@ public class SellRestController {
         this.productService = productService;
     }
 
-    @PutMapping("/sellMod/{id}")
+    @PutMapping("/sellList/{id}")
     public ResponseEntity<?> updateSell(@PathVariable("id")Long id, @RequestBody SellCommand sellCommand) {
         productService.afterUpdateSellAmount(sellCommand, sellService.sellFindById(id).getSellAmount());
         walletService.updatePlusWalletMoney(sellCommand, id);

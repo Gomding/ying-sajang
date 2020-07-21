@@ -2,9 +2,7 @@ package com.community.hululuuuu.yiying;
 
 import com.community.hululuuuu.myComponent.PageableDefault;
 import com.community.hululuuuu.repository.YiyingRepository;
-import com.community.hululuuuu.sell.Sell;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

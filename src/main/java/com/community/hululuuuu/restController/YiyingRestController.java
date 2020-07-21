@@ -27,7 +27,7 @@ public class YiyingRestController {
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
-    @PutMapping("/buyMod/{id}")
+    @PutMapping("/buyList/{id}")
     public ResponseEntity<?> updateSubmitBuy(@PathVariable("id") Long id,@RequestBody BuyCommand buyCommand) {
         yiyingService.updateBuy(buyCommand, id);
         walletService.updateMinusWalletMoney(buyCommand, id);

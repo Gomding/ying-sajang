@@ -71,7 +71,7 @@ public class YiyingController {
         return mav;
     }
 
-    @GetMapping({"/buySearchList", "/buySearchList/"})
+    @GetMapping({"/buyList", "/buySearchList/"})
     public ModelAndView searchSellList(@RequestParam(value = "start")String start, @RequestParam(value = "end")String end, @PageableDefault Pageable pageable) {
         LocalDate startDate = LocalDate.parse(start, DateTimeFormatter.ISO_DATE);
         LocalDate endDate = LocalDate.parse(end, DateTimeFormatter.ISO_DATE);
