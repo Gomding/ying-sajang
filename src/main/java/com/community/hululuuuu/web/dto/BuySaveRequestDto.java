@@ -4,11 +4,13 @@ import com.community.hululuuuu.domain.yiying.Yiying;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @NoArgsConstructor
+@Setter
 @Getter
 public class BuySaveRequestDto {
 
