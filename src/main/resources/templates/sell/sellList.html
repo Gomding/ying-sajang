@@ -107,7 +107,7 @@
     $(".deleteBtn").click(function () {
         if (confirm("삭제하시겠습니까?")) {
             $.ajax({
-                url: "http://ec2-15-165-154-135.ap-northeast-2.compute.amazonaws.com:8080/sell/sellList/" + $(this).children(".sell_id").val(),
+                url: "www.hululuuuu.com/sell/sellList/" + $(this).children(".sell_id").val(),
                 type: "DELETE",
                 success: function () {
                     alert("삭제 성공!");
@@ -123,7 +123,7 @@
 
     $("#searchSell").click(function () {
         $.ajax({
-            url: "http://ec2-15-165-154-135.ap-northeast-2.compute.amazonaws.com:8080/sell/sellSearchList?start=" + $("#start").val() + "&end=" + $("#end").val(),
+            url: "www.hululuuuu.com/sell/sellSearchList?start=" + $("#start").val() + "&end=" + $("#end").val(),
             type: "GET",
             success: function () {
                 location.href = "/sell/sellSearchList?start=" + $("#start").val() + "&end=" + $("#end").val();

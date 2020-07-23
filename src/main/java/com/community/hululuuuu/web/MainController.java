@@ -24,14 +24,7 @@ public class MainController {
     private final ProductService productService;
     private final WalletService walletService;
 
-    @GetMapping("/")
-    public ModelAndView index() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/index");
-        return mav;
-    }
-
-    @GetMapping("/main")
+    @GetMapping({"/", "/main"})
     public ModelAndView main() {
 
         ModelAndView mav = new ModelAndView();
