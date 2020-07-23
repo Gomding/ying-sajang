@@ -10,6 +10,7 @@ import com.community.hululuuuu.web.dto.BuySaveRequestDto;
 import com.community.hululuuuu.web.dto.SellRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,6 +31,7 @@ public class WalletService {
         return walletRepository.findTop1ByOrderByWalletDateDesc();
     }
 
+    @Transactional
     public void plusWalletMoney(SellRequestDto requestDto) {
         int nowWalletMoney = walletRepository.findTop1ByOrderByWalletDateDesc().getWalletMoney();
         int sellMoney = requestDto.getProfit();
@@ -44,6 +46,7 @@ public class WalletService {
         );
     }
 
+    @Transactional
     public void updatePlusWalletMoney(SellRequestDto requestDto, Long id) {
         int nowWalletMoney = walletRepository.findTop1ByOrderByWalletDateDesc().getWalletMoney();
         int oldSellMoney = sellRepository.getOne(id).getSellProfit();
@@ -81,6 +84,7 @@ public class WalletService {
         );
     }
 
+    @Transactional
     public void minusWalletMoney(BuySaveRequestDto requestDto) {
         int nowWalletMoney = walletRepository.findTop1ByOrderByWalletDateDesc().getWalletMoney();
         int buyMoney = requestDto.getPrice();
@@ -95,6 +99,7 @@ public class WalletService {
         );
     }
 
+    @Transactional
     public void cancelMinusWalletMoney(Long id) {
 
         Yiying yiying = yiyingRepository.getOne(id);
@@ -111,6 +116,7 @@ public class WalletService {
         );
     }
 
+    @Transactional
     public void updateMinusWalletMoney(BuySaveRequestDto requestDto, Long id) {
         int nowWalletMoney = walletRepository.findTop1ByOrderByWalletDateDesc().getWalletMoney();
         int oldBuyMoney = yiyingRepository.getOne(id).getYiyingPrice();

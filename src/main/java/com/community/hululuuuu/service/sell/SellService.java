@@ -26,6 +26,7 @@ public class SellService {
     }
 
     // 판매 생성 메서드
+    @Transactional
     public Long createSell(SellRequestDto requestDto) {
 
         return sellRepository.save(requestDto.toEntity()).getSellId();
@@ -52,6 +53,7 @@ public class SellService {
     }
 
     // 판매 내용 삭제
+    @Transactional
     public void deleteSell(Long id) {
         sellRepository.deleteById(id);
     }
