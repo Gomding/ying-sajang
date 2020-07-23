@@ -191,7 +191,7 @@
             link: $("#link").val()
         });
         $.ajax({
-            url: "www.hululuuuu.com/memo/memoList",
+            url: "http://www.hululuuuu.com/memo/memoList",
             type: "POST",
             data: jsonData,
             contentType: "application/json",
@@ -201,7 +201,7 @@
                 location.href="/memo/memoList";
             },
             error: function() {
-                alert("수정 실패!");
+                alert("생성 실패!");
             }
         });
     });
