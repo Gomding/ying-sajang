@@ -123,7 +123,7 @@
 
     $("#searchSell").click(function () {
         $.ajax({
-            url: "www.hululuuuu.com/sell/sellSearchList?start=" + $("#start").val() + "&end=" + $("#end").val(),
+            url: "http://http://ec2-15-165-154-135.ap-northeast-2.compute.amazonaws.com:8080/sell/sellSearchList?start=" + $("#start").val() + "&end=" + $("#end").val(),
             type: "GET",
             success: function () {
                 location.href = "/sell/sellSearchList?start=" + $("#start").val() + "&end=" + $("#end").val();

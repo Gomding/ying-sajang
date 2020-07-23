@@ -106,7 +106,7 @@
 
     $("#searchBuy").click(function () {
         $.ajax({
-            url: "www.hululuuuu.com/yiying/buySearchList?start=" + $("#start").val() + "&end=" + $("#end").val(),
+            url: "http://http://ec2-15-165-154-135.ap-northeast-2.compute.amazonaws.com:8080/yiying/buySearchList?start=" + $("#start").val() + "&end=" + $("#end").val(),
             type: "GET",
             success: function () {
                 location.href = "/yiying/buySearchList?start=" + $("#start").val() + "&end=" + $("#end").val();

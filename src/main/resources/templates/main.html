@@ -117,7 +117,7 @@
             <span class="text-center"><h4>현재 잔액 <a th:text="${nowWallet.walletMoney} + '원'"></a></h4></span><br/>
             <span class="text-center"><h4>최근 거래일 : <a th:text="${nowWallet.walletModdate}"></a></h4></span>
             <br/><br/>
-            <span><h4> 최근 지갑 조회내역 </h4></span>
+            <span><h4> 최근 지갑 거래내역 </h4></span>
             <div>
                 <table class="table table-hover">
                     <thead>
@@ -191,7 +191,7 @@
             link: $("#link").val()
         });
         $.ajax({
-            url: "www.hululuuuu.com/memo/memoList",
+            url: "http://http://ec2-15-165-154-135.ap-northeast-2.compute.amazonaws.com:8080/memo/memoList",
             type: "POST",
             data: jsonData,
             contentType: "application/json",
